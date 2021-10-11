@@ -185,6 +185,7 @@ CHANNEL_LAYERS = {
 
 GRAPHENE = {
     'SCHEMA': 'backend.schema.schema',
+    'SUBSCRIPTION_PATH': 'subscriptions/',
 }
 
 WEBPACK_LOADER = {
@@ -210,7 +211,7 @@ EMAIL_USE_TLS = True
 DEFAULT_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'backend.email.backends.django_q.DjangoQBackend'
 DJANGO_Q_EMAIL_BACKEND = config('DJANGO_EMAIL_BACKEND', DEFAULT_BACKEND)
-VERIFY_EMAIL_LINK_AGE = int(config('VERIFY_EMAIL_LINK_AGE', 8 * 60 * 60))  # 8-days
+VERIFY_EMAIL_LINK_AGE = int(config('VERIFY_EMAIL_LINK_AGE', 8 * 60 * 60))  # 8-hours
 
 # Django-q configs
 Q_CLUSTER = {
