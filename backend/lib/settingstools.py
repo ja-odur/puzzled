@@ -116,8 +116,6 @@ def load_json_settings():
     Once a file is found it is loaded and returned.
     :return: dict
     """
-    print('config path', os.path.join(os.path.realpath('..'), LOCAL_CONFIG_FILE_NAME))
-    print('actual', os.path.join(os.getcwd(), LOCAL_CONFIG_FILE_NAME))
     potential_locations = [
         config('DYNAMIC_CONFIGURATION_FILE', None),
         os.path.join(os.getcwd(), LOCAL_CONFIG_FILE_NAME),
