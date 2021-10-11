@@ -119,10 +119,10 @@ class RedisStream:
             for redis_key, fields in fields
         ]
 
-    def poll_stream(self, stream_name, parse_stream_data):
+    def poll_stream(self, stream_identifier, parse_stream_data):
         """Function to poll data from redis streams
         Args:
-            stream_name (str): stream name
+            stream_identifier (str): stream name
             parse_stream_data: method for serializing final message
         """
         seen_id = None
@@ -137,11 +137,11 @@ class RedisStream:
 
         return (
             rx.Observable.of(None)
-            .expand(lambda: rx.Observable.from_future(self.read({f'{stream_name}': seen_id})))
+            .expand(lambda: rx.Observable.from_future(self.read({f'{stream_identifier}': seen_id})))
             .filter(lambda streams: streams)
             .flat_map(lambda streams: streams)
             .flat_map(lambda stream: stream[1])
-            .map(lambda stream_event: parse_stream_data(stream_event, stream_name))
+            .map(lambda stream_event: parse_stream_data(stream_event, stream_identifier))
             .do_action(update_seen_id)
             .finally_action(disconnect)
             .publish()
