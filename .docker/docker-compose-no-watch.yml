@@ -1,0 +1,5 @@
+version: "3.5"
+
+services:
+  build-watch:
+    command: bash -c "npm rebuild node-sass && npm run build"
