@@ -14,6 +14,7 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 import dj_database_url
 from decouple import config
+from backend.lib.settingstools import settings_vector
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -27,7 +28,10 @@ SECRET_KEY = config('SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = bool(config('DEBUG'))
 
-ALLOWED_HOSTS = ['*', '127.0.0.1', 'localhost']
+if DEBUG:
+    ALLOWED_HOSTS = settings_vector.get_by_path('web.allowed_hosts.development', ['*', '127.0.0.1', 'localhost'])
+else:
+    ALLOWED_HOSTS = settings_vector.get_by_path('web.allowed_hosts.production')
 
 BASE_URL = config('BASE_URL', 'http://localhost:8000/')
 
@@ -52,6 +56,7 @@ INSTALLED_APPS = [
     'backend.authentication.apps.AuthenticationConfig',
     'backend.chat.apps.ChatConfig',
     'backend.email.apps.EmailConfig',
+    'backend.fan_out.apps.FanOutConfig',
     'backend.gem.apps.GemConfig',
     'backend.poker.apps.PokerConfig',
     'backend.sudoku.apps.SudokuConfig',
@@ -181,6 +186,7 @@ CHANNEL_LAYERS = {
 
 GRAPHENE = {
     'SCHEMA': 'backend.schema.schema',
+    'SUBSCRIPTION_PATH': 'subscriptions/',
 }
 
 WEBPACK_LOADER = {
@@ -206,7 +212,7 @@ EMAIL_USE_TLS = True
 DEFAULT_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_BACKEND = 'backend.email.backends.django_q.DjangoQBackend'
 DJANGO_Q_EMAIL_BACKEND = config('DJANGO_EMAIL_BACKEND', DEFAULT_BACKEND)
-VERIFY_EMAIL_LINK_AGE = int(config('VERIFY_EMAIL_LINK_AGE', 8 * 60 * 60))  # 8-days
+VERIFY_EMAIL_LINK_AGE = int(config('VERIFY_EMAIL_LINK_AGE', 8 * 60 * 60))  # 8-hours
 
 # Django-q configs
 Q_CLUSTER = {

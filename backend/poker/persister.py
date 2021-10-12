@@ -55,6 +55,10 @@ class PokerGamePersist:
             hand.save()
             hand.players.set(self.current_hand.players)
 
+    @classmethod
+    def add_player(cls, room_id, user_id):
+        return PokerRoom.objects.add_player(room_id=room_id, user_id=user_id)
+
     @staticmethod
     def _stringify_cards(cards):
         return ' '.join(card.raw_value for card in cards)

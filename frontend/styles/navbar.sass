@@ -2,18 +2,20 @@
 @import "commons/constants"
 @import "colors"
 
-.nav-container
-  display: block
+.logo
+  font-size: 3rem
+  line-height: 3rem
 
 nav
   display: flex
   flex-wrap: wrap
   justify-content: space-between
   align-items: center
-  padding: .4em .5em
+  padding: .9em 2em
   min-width: 250px
   font-size: 2rem
-  color: $thickBlue
+  color: white
+  background-color: $thickBlue
 
   >div
     span
@@ -88,6 +90,7 @@ nav
   top: 110%
   right: 10%
   z-index: 1100
+  color: $thickBlue
 
   div
     width: 100%
@@ -104,7 +107,7 @@ nav
       height: 40px
       text-transform: capitalize
       border: 1px solid $lightWhite
-      font-size: .9rem
+      font-size: 1rem
 
       &:hover
         background-color: $lightWhite
@@ -117,6 +120,12 @@ nav
 
 .app-slogan
   display: none
+  font-weight: bold
+  font-size: 5rem
+  line-height: 5rem
+  text-transform: uppercase
+  background-color: $thickBlue
+  color: white
 
 @media (min-width: $mainBreakPoint)
   .min-dropdown
@@ -124,11 +133,6 @@ nav
 
   .nav-profile
     @include nav-profile
-
-  .nav-container
-    padding: 0 1em
-    max-width: 1500px
-    margin: 0 auto
 
   .nav-ul
     order: 0
@@ -152,16 +156,16 @@ nav
       display: unset
       margin: 0 2%
       padding: .2em
-      border-bottom: 2px solid white
+      border-bottom: 2px solid $thickBlue
       min-width: 1%
 
       a
-        color: $thickBlue
+        color: white
         padding: .2em
         text-decoration: none
 
   .nav-active
-    border-bottom: 2px solid $thickBlue
+    border-bottom: 2px solid white
 
   .nav-img
     object-fit: none
@@ -177,9 +181,30 @@ nav
 
   .app-slogan
     display: flex
+    flex-wrap: wrap
     justify-content: center
     align-items: center
-    font-size: 2rem
-    color: $gold
-    background-color: $thickBlue
-    height: 15vh
+    font-weight: bold
+    font-size: 5rem
+    line-height: 5rem
+    min-height: 40vh
+
+    div
+      display: flex
+      flex-wrap: wrap
+      justify-content: center
+      >span
+        width: 100%
+        text-align: center
+
+        >span
+          color: $gold
+          //text-shadow: 0 0 30px white, -3px 0 20px #49fc00
+          text-shadow: 0 0 30px $gold, -3px 0 20px #494977
+
+@media (min-width: 1500px)
+  .app-slogan
+    font-weight: bold
+    font-size: 8rem
+    line-height: 8rem
+    text-transform: uppercase

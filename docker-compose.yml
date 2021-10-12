@@ -25,7 +25,7 @@ services:
 
   build-app-image:
     build:
-      context: .
+      context: .docker
       dockerfile: .docker/web_app_slim.dockerfile
     image: jaodur/puzzled
     command: echo image build complete

@@ -1,3 +1,5 @@
+@import '../colors'
+
 @mixin nav-ul($color: black, $hoverColor: $thickBlue, $margin: 5%, $alignLI: center, $marginLI: 0 1%)
   >ul
       height: 100%
@@ -9,15 +11,15 @@
       justify-content: $alignLI
       text-transform: capitalize
       flex: 8 1
-      min-width: 150px
+      min-width: 250px
 
       li
         margin: $marginLI
         height: 60%
-        font-size: $baseFontSize + 5
-        font-weight: 100
-        line-height: 1
+        font-size: 2rem
+        line-height: 2rem
         display: flex
+        color: white
         align-items: center
 
         &:nth-child(3)
@@ -25,10 +27,10 @@
 
         &:hover
           a
-            color: $hoverColor
+            color: $darkWhite
 
         a
-          color: $color
+          color: white
           text-decoration: none
 
 @mixin nav-profile

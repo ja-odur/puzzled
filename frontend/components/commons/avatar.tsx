@@ -47,12 +47,13 @@ const useStyles = makeStyles(theme => ({
         color: theme.palette.getContrastText(deepPurple[500]),
         backgroundColor: deepPurple[500],
     },
-    xsmall: {
+    xSmall: {
         display: 'flex',
         alignItems: 'center',
-        width: '40px',
-        height: '40px',
+        width: '50px',
+        height: '50px',
         margin: '0',
+        fontsize: '2rem'
     },
     medium: {
         width: theme.spacing(9),
@@ -61,7 +62,7 @@ const useStyles = makeStyles(theme => ({
         border: '5px solid #1E4F15',
         boxShadow: '0 0 5px 2px rgba(0,0,0,0.25), 0 0 5px 2px rgba(0,0,0,0.22)',
     },
-    xlarge: {
+    xLarge: {
         width: theme.spacing(20),
         height: theme.spacing(20),
         fontSize: '4rem',
@@ -77,7 +78,7 @@ function ProfileAvatar({ src, profileName, onClick, className, small, maxLetters
         return ((initials.shift() || '') + (initials.pop() || '')).toUpperCase();
     }
 
-    const sizeStyle = !!small ? classes.xsmall : classes.xlarge;
+    const sizeStyle = !!small ? classes.xSmall : classes.xLarge;
 
     return (
         <div className={className} onClick={onClick}>
@@ -104,6 +105,11 @@ function NavBarProfileAvatar({ src, profileName }: AvatarInterface) {
         setShowDropdown(!showDropdown);
     }
 
+    function gotoProfile() {
+        toggleShowDropdown()
+        history.push(links.USER.PROFILE.HOME)
+    }
+
     async function logoutUser(event: EventInterface) {
         event.preventDefault();
 
@@ -126,11 +132,9 @@ function NavBarProfileAvatar({ src, profileName }: AvatarInterface) {
 
             <Collapse className={'navbar-avatar__dropdown'} in={showDropdown} timeout="auto" unmountOnExit>
                 <div>
-                    <Link to={links.USER.PROFILE.HOME} onClick={toggleShowDropdown}>
-                        <span>
-                            <ProfileIcon /> profile
-                        </span>
-                    </Link>
+                    <span onClick={gotoProfile}>
+                        <ProfileIcon /> profile
+                    </span>
                     <span onClick={logoutUser}>
                         <LogoutIcon /> logout
                     </span>

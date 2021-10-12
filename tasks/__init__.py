@@ -1,5 +1,6 @@
 from invoke import Collection
 
+from .docker_tasks import docker_hot_reload, docker_hot_reload_disabled, docker_frontend_build_disabled
 from .testing_tasks import lint_js, lint_py, test_python
 from .dev_tasks import (
     prettier_js,
@@ -23,3 +24,6 @@ task_col.add_task(install_requirements)
 task_col.add_task(build_local)
 task_col.add_task(webpack_dev_server)
 task_col.add_task(python_server)
+task_col.add_task(docker_hot_reload)
+task_col.add_task(docker_hot_reload_disabled)
+task_col.add_task(docker_frontend_build_disabled)

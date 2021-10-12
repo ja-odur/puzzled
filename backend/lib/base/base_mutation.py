@@ -1,10 +1,12 @@
 import graphene
 from graphene.types.mutation import MutationOptions
 from graphene.utils.props import props
-from django.core.exceptions import ImproperlyConfigured
+from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from backend.lib.exceptions import FieldValidationError, GraphQLValidationError
 from backend.lib.types import Error
 from backend.lib.utils import get_error_code_from_error, print_exception, snake_to_camel_case
+
+EXCLUDED_EXCEPTIONS = [ObjectDoesNotExist]
 
 
 def get_error_fields(error_type_class, error_type_field):
@@ -21,6 +23,10 @@ def get_error_fields(error_type_class, error_type_field):
 
 def validation_error_to_error_type(validation_error):
     """Convert a ValidationError into a list of Error types."""
+
+    for exc in EXCLUDED_EXCEPTIONS:
+        if isinstance(validation_error, exc):
+            raise validation_error
 
     if not isinstance(validation_error, FieldValidationError):
         print_exception()

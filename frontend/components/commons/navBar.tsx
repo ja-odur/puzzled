@@ -28,14 +28,14 @@ function NavMenu({ className, activeClass, links }: LinksInterface) {
     );
 }
 
-function NavBar({ className, activeClass, links }: LinksInterface) {
+function NavBar({ className, activeClass, links, style }: LinksInterface) {
     const signUpSignInLinks: LinkInterface[] = [
         { name: 'Sign In', href: urlLinks.USER.SIGN_IN },
         { name: 'Sign Up', href: urlLinks.USER.SIGN_UP },
     ];
 
     return (
-        <nav>
+        <nav style={style || {}}>
             <Logo />
             {!!links ? <NavMenu className={className} activeClass={activeClass} links={links} /> : <NavUL />}
             <NavDropDownMin className={'min-dropdown h-dropdown'} />

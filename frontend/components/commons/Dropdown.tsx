@@ -25,6 +25,11 @@ const ProfileDropdown = ({ toggleDropdown }: DropdownInterface) => {
     const { asyncUpdateLoginInfo } = useCheckLoginContext();
     const dispatch = useDispatch();
 
+    function gotoProfile() {
+        toggleDropdown();
+        history.push(links.USER.PROFILE.HOME);
+    }
+
     async function logout(event: EventInterface) {
         event.preventDefault();
 
@@ -37,11 +42,9 @@ const ProfileDropdown = ({ toggleDropdown }: DropdownInterface) => {
     }
     return (
         <div>
-            <Link to={links.USER.PROFILE.HOME} onClick={toggleDropdown}>
-                <span>
-                    <ProfileIcon /> profile
-                </span>
-            </Link>
+            <span onClick={gotoProfile}>
+                <ProfileIcon /> profile
+            </span>
             <span onClick={logout}>
                 <LogoutIcon /> logout
             </span>

@@ -36,6 +36,13 @@ function ContentContainer() {
                     <GameCard name={'sudoku'} desc={''} src={gif2} link={links.SUDOKU.HOME} />
                     <GameCard name={'sudoku'} desc={''} src={gif1} link={links.SUDOKU.HOME} />
                     <GameCard name={'sudoku'} desc={''} src={gif2} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={sd} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={sd} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={sd} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={gif1} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={gif2} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={gif1} link={links.SUDOKU.HOME} />
+                    <GameCard name={'sudoku'} desc={''} src={gif2} link={links.SUDOKU.HOME} />
                 </GameCards>
             </MainContent>
         </React.Fragment>

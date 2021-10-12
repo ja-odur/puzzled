@@ -63,3 +63,7 @@ class PokerGame:
 
     def invite(self):
         pass
+
+    @classmethod
+    def add_player(cls, room_id, user_id):
+        return PokerGamePersist.add_player(room_id=room_id, user_id=user_id)
