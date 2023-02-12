@@ -42,7 +42,10 @@ class UserManager(BaseUserManager):
                 user.set_unusable_password()
             user.save(using=self._db)
 
-        context_data = {'name': user.name, 'verification_url': user.generate_email_confirmation_url(user.email)}
+        context_data = {
+            'name': user.name,
+            'verification_url': user.generate_email_confirmation_url(user.email),
+        }
         user.send_email('Email Verification', 'verify_email', context_data)
 
         return user

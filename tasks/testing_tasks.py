@@ -10,6 +10,7 @@ def lint_js(context):
 
 @task(name='lint-py')
 def lint_py(context):
+    run('black --check --diff --fast ./backend/**/*', echo=True)
     run('flake8 --config=.flake8 *.py .', echo=True)
 
 

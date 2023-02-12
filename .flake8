@@ -5,7 +5,7 @@ exclude =
 
 max-line-length = 120
 
-ignore = FI12,FI14,FI15,FI16,FI17,FI5,W503,W504,W505,W605
+ignore = E231,FI12,FI14,FI15,FI16,FI17,FI5,W503,W504,W505,W605
 
 require-code = True
 

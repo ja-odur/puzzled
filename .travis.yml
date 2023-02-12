@@ -18,6 +18,7 @@ install:
   - source ./bin/functions/set_node_path.sh && setNodePath
 
 script:
+  - [ -d ./backend/__pycache__/ ] && rm -r ./backend/__pycache__/
   - inv lint-js
   - inv lint-py
   - inv test-py

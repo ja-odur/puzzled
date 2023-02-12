@@ -3,7 +3,7 @@ from .mutations import (
     AddMessage,
     EditMessage,
     CreateOrGetDirectChatChannelMutation,
-    CreateOrGetMultiUserChatChannelMutation
+    CreateOrGetMultiUserChatChannelMutation,
 )
 from .subscriptions import ChatChannelUpdatedType
 

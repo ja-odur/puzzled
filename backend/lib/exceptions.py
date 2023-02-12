@@ -1,5 +1,4 @@
 class FieldValidationError(Exception):
-
     def __init__(self, message, field, params, code='required'):
         super().__init__(message)
         self.field = field
@@ -9,7 +8,6 @@ class FieldValidationError(Exception):
 
 
 class GraphQLValidationError(Exception):
-
     def __init__(self, message, errors):
         super().__init__(message)
         self.errors = errors

@@ -2,8 +2,9 @@ from .models import PokerHand, PokerRoom
 
 
 class PokerGamePersist:
-
-    def __init__(self, poker_type, small_blind, big_blind, players=(), dealer=0, name=None, current_hand=None, id=None):
+    def __init__(
+        self, poker_type, small_blind, big_blind, players=(), dealer=0, name=None, current_hand=None, id=None
+    ):
         self.id = id
         self.type = poker_type
         self.small_blind = small_blind
@@ -35,7 +36,7 @@ class PokerGamePersist:
             players=players,
             name=name,
             current_hand=current_hand,
-            id=room.id
+            id=room.id,
         )
 
     def save(self):
@@ -49,8 +50,7 @@ class PokerGamePersist:
                 pot_size=self.current_hand.pot.size,
                 community_cards=self._stringify_cards(self.current_hand.community_cards),
                 banned_cards=self._stringify_cards(self.current_hand.banned_cards),
-
-                dealer=self.dealer
+                dealer=self.dealer,
             )
             hand.save()
             hand.players.set(self.current_hand.players)

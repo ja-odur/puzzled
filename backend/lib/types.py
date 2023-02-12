@@ -20,7 +20,6 @@ class Error(graphene.ObjectType):
 
 
 class EmailField(graphene.String):
-
     @staticmethod
     def parse_value(value):
 

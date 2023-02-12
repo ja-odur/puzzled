@@ -10,8 +10,7 @@ class ChatChannelUpdatedType(graphene.ObjectType):
 
     def resolve_chat_channel_updated(root, info, id):
         return root.filter(
-            lambda event:
-                event.operation == POST_ADD and
-                isinstance(event.instance, ChatChannel) and
-                event.instance.pk == int(id)
+            lambda event: event.operation == POST_ADD
+            and isinstance(event.instance, ChatChannel)
+            and event.instance.pk == int(id)
         ).map(lambda event: event.instance)
