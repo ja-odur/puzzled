@@ -21,7 +21,7 @@ const config = () => {
         entry: './frontend/index.tsx',
 
         output: {
-            path: path.resolve('./frontend/static/bundles/'),
+            path: path.resolve('./frontend/static/webpack_bundles/'),
             filename: '[name]-[hash].js'
         },
 
@@ -34,7 +34,7 @@ const config = () => {
                 {
                     test: /\.tsx?$/,
                     exclude: /node_modules/,
-                    use: ['awesome-typescript-loader']
+                    use: ['ts-loader']
                 },
                 {
                     test: /\.js$/,
@@ -42,8 +42,17 @@ const config = () => {
                     use: ['babel-loader']
                 },
                 {
-                    test: /\.sass$/,
-                    use: ['style-loader', 'css-loader', 'sass-loader']
+                  test: /\.(scss|sass)$/,
+                  use: [
+                    'style-loader',
+                    'css-loader',
+                    {
+                      loader: 'sass-loader',
+                      options: {
+                        implementation: require('sass'),
+                      },
+                    },
+                  ],
                 },
                 {
                     test: /\.(png|je?pg|webp)$/,
@@ -56,7 +65,8 @@ const config = () => {
                 {
                     enforce: "pre",
                     test: /\.js$/,
-                    loader: "source-map-loader"
+                    loader: "source-map-loader",
+                    exclude: /node_modules/  // 👈 add this line
                 },
                 // Fonts
                 {

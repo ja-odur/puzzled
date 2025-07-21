@@ -10,7 +10,11 @@ config.output.path = path.resolve('./frontend/static/webpack_bundles/')
 
 // Add BundleTracker plugin
 config.plugins =  config.plugins.concat([
-        new BundleTracker({filename: './webpack-stats.json'}),
+        new BundleTracker({
+          path: __dirname,
+          filename: 'webpack-stats.json',
+          entrypoints: false
+        }),
     ]);
 
 // Add a loader for JSX files

@@ -11,7 +11,11 @@ config.output.path = path.resolve('./frontend/static/dist/');
 
 
 config.plugins =  config.plugins.concat([
-    new BundleTracker({filename: './webpack-stats-prod.json'}),
+    new BundleTracker({
+        path: __dirname,
+        filename: 'webpack-stats-prod.json',
+        entrypoints: false}
+    ),
 
     // removes a lot of debugging code in React
     new webpack.DefinePlugin({
