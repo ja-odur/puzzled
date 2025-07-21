@@ -1,5 +1,3 @@
-version: "3.5"
-
 services:
   db:
     image: postgres:9.6.10-alpine
@@ -25,7 +23,7 @@ services:
 
   build-app-image:
     build:
-      context: .docker
+      context: .
       dockerfile: .docker/web_app_slim.dockerfile
     image: jaodur/puzzled
     command: echo image build complete
@@ -82,7 +80,7 @@ services:
 
   build-watch:
     image: jaodur/puzzled
-    command: bash -c "npm rebuild node-sass && npm run watch"
+    command: bash -c "npm run watch"
     stdin_open: true
     volumes:
       - .:/app
