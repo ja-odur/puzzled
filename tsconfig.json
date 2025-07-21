@@ -1,18 +1,15 @@
 {
-  "compilerOptions": {
-    "outDir": "./dist/",
-    "sourceMap": true,
-    "noImplicitAny": true,
-    "module": "commonjs",
-    "target": "es5",
-    "lib": ["es5", "es6", "dom"],
-    "jsx": "react",
-    "esModuleInterop": true
-  },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    "./**/node_modules/*"
-  ]
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "sourceMap": true,
+        "noImplicitAny": false,
+        "module": "commonjs",
+        "target": "es5",
+        "lib": ["es5", "es6", "dom"],
+        "jsx": "react",
+        "esModuleInterop": true,
+        "types": []
+    },
+    "include": ["./frontend/**/*"],
+    "exclude": ["./**/node_modules/*"]
 }
