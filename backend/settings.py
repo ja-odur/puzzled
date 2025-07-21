@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 from django.core.exceptions import ImproperlyConfigured
-import dj_database_url
 from decouple import config
 from backend.lib.settingstools import settings_vector
 
@@ -115,7 +114,14 @@ ASGI_APPLICATION = "backend.routing.application"
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URI'))
+    "default": {
+            "ENGINE": os.getenv("DB_ENGINE", "django.db.backends.postgresql_psycopg2"),
+            "NAME": os.getenv("DB_NAME", "puzzled"),
+            "USER": os.getenv("DB_USER", "docker"),
+            "PASSWORD": os.getenv("DB_PASSWORD", "docker"),
+            "HOST": os.getenv("DB_HOST", "db"),
+            "PORT": os.getenv("DB_PORT", "5432"),
+        }
 }
 
 
