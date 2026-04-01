@@ -35,8 +35,10 @@ def email_from_dict(email_message_data):
     kwargs = dict(email_message_data)
     alternatives = kwargs.pop('alternatives', None)
     return (
-        EmailMessage(**kwargs) if not alternatives else
-        EmailMultiAlternatives(alternatives=alternatives, **kwargs))
+        EmailMessage(**kwargs)
+        if not alternatives
+        else EmailMultiAlternatives(alternatives=alternatives, **kwargs)
+    )
 
 
 def get_html_text_template_pair(template_name):

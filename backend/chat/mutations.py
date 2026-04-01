@@ -44,15 +44,11 @@ class CreateOrGetDirectChatChannelMutation(BaseMutation):
                     field='user_ids',
                     message=f'user(s) with ids {invalid_user_ids} not found',
                     code='invalid',
-                    params=user_ids
+                    params=user_ids,
                 )
 
             try:
-                chat_channel = ChatChannel(
-                    room_id=chat_room_id,
-                    name=name,
-                    type=ChatTypeEnum.DIRECT
-                )
+                chat_channel = ChatChannel(room_id=chat_room_id, name=name, type=ChatTypeEnum.DIRECT)
 
                 chat_channel.save()
             except IntegrityError:
@@ -60,7 +56,7 @@ class CreateOrGetDirectChatChannelMutation(BaseMutation):
                     field='name',
                     message=f"ChatChannel with name '{name}' already exists",
                     code='invalid',
-                    params=name
+                    params=name,
                 )
             chat_channel.users.set(user_ids)
 
@@ -97,7 +93,7 @@ class CreateOrGetMultiUserChatChannelMutation(BaseMutation):
                     field='chat_type',
                     message='This mutation is only used to create Private or Public chat channels',
                     code='invalid',
-                    params=chat_type
+                    params=chat_type,
                 )
 
             invalid_user_ids = get_invalid_model_unique_keys(get_user_model(), user_ids)
@@ -107,7 +103,7 @@ class CreateOrGetMultiUserChatChannelMutation(BaseMutation):
                     field='user_ids',
                     message=f'user(s) with ids {invalid_user_ids} not found',
                     code='invalid',
-                    params=user_ids
+                    params=user_ids,
                 )
             chat_channel = ChatChannel(room_id=generate_room_id(non_reusable=True), name=name, type=chat_type)
             chat_channel.save()
@@ -140,7 +136,7 @@ class AddMessage(BaseMutation):
                 field='channel_id',
                 message=f'channel with id {channel_id} not found',
                 code='invalid',
-                params=channel_id
+                params=channel_id,
             )
 
         msg = Message(user=root.context.user, message=message)
@@ -173,15 +169,12 @@ class EditMessage(BaseMutation):
                 field='message_id',
                 message=f'message with id {message_id} not found',
                 code='invalid',
-                params=message_id
+                params=message_id,
             )
 
         if msg.user != root.context.user:
             raise FieldValidationError(
-                field=None,
-                message='Permission Denied',
-                code='invalid',
-                params=message_id
+                field=None, message='Permission Denied', code='invalid', params=message_id
             )
 
         msg.message = message

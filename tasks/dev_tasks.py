@@ -9,7 +9,7 @@ def prettier_js(context):
 
 @task(name='prettier-py')
 def prettier_py(context):
-    run('autopep8 --in-place --recursive .', echo=True)
+    run('black --verbose ./backend/**/*', echo=True)
 
 
 @task(name='set-node-path')

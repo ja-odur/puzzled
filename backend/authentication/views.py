@@ -8,7 +8,6 @@ from backend.authentication import constants
 
 
 class VerifyEmail(View):
-
     def get(self, request, signed_data, *args, **kwargs):
         try:
             signing.loads(signed_data, max_age=settings.VERIFY_EMAIL_LINK_AGE)

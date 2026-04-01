@@ -30,6 +30,7 @@ redis = "*"
 jinja2 = "*"
 premailer = "*"
 graphene-subscriptions = "*"
+black = "*"
 
 [dev-packages]
 

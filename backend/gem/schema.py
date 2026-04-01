@@ -24,5 +24,5 @@ class GemQuery(graphene.ObjectType):
             'You do not have the required permission to view this field',
             field=None,
             params=None,
-            code='Invalid'
+            code='Invalid',
         )

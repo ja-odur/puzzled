@@ -39,8 +39,17 @@ class PokerGame:
         poker_room_streams.add(self.room.poker_room, {'room': self.room})
 
     @classmethod
-    def new_room(cls, poker_type, small_blind, big_blind, players=(),
-                 name=None, from_deck=None, deck_size=1, dealer=None):
+    def new_room(
+        cls,
+        poker_type,
+        small_blind,
+        big_blind,
+        players=(),
+        name=None,
+        from_deck=None,
+        deck_size=1,
+        dealer=None,
+    ):
         """constructor for creating new room
         Args:
             poker_type (str): string representing the type of hand --such as Omaha, being played in the room.
@@ -53,7 +62,9 @@ class PokerGame:
             dealer (int): if set, represents the position of the dealer
         """
         new_room = PokerGamePersist.new_room(poker_type, small_blind, big_blind, players=players, name=name)
-        return PokerRoom(new_room.id, poker_type, small_blind, big_blind, players, name, from_deck, deck_size, dealer)
+        return PokerRoom(
+            new_room.id, poker_type, small_blind, big_blind, players, name, from_deck, deck_size, dealer
+        )
 
     def join_room(self):
         pass

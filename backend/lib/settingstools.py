@@ -133,8 +133,10 @@ def load_json_settings():
     # enough.
     if file_location is None:
         print('Unable to find a JSON settings file.')
-        print('Please set DYNAMIC_CONFIGURATION_FILE to a valid path or place '
-              'the configuration file at one of the following locations:')
+        print(
+            'Please set DYNAMIC_CONFIGURATION_FILE to a valid path or place '
+            'the configuration file at one of the following locations:'
+        )
         for location in potential_locations:
             print(' * {}'.format(location))
         print('This error is most likely popping up because you don\'t have a local config file.')

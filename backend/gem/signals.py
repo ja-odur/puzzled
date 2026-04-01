@@ -12,5 +12,5 @@ def post_save_gem_handler(sender, instance, *args, created=False, **kwargs):
 post_save.connect(
     post_save_gem_handler,
     sender=get_user_model(),
-    dispatch_uid=f'{get_user_model().__class__.__name__}_gem_signal'
+    dispatch_uid=f'{get_user_model().__class__.__name__}_gem_signal',
 )
